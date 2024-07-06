@@ -43,13 +43,13 @@ export default function Home() {
 
   return (
     <div className="bg min-h-screen w-screen flex flex-col justify-center items-center relative gap-[3em]">
-      <header className="fixed top-0 w-full text-center py-3 sm:px-8 px-3 text-white">
+      <header className="fixed top-0 w-full text-center py-3 sm:px-8 px-3 text-black">
         <div className="flex justify-start items-center cursor-pointer">
           <Logo />
         </div>
       </header>
       <div className="md:w-3/5 w-4/5 flex flex-col gap-1">
-        <label htmlFor="input" className="font-bold text-white">
+        <label htmlFor="input" className="font-bold text-black">
           Long URL
         </label>
         <Input
@@ -60,7 +60,11 @@ export default function Home() {
           }}
           placeholder="Enter the long URL"
           classNames={{
-            inputWrapper: "pr-0 bg-white shadow-sm shadow-white",
+            inputWrapper: [
+              "bg-black text-white pr-0 shadow-sm shadow-black",
+              "data-[hover=true]:bg-zinc-800 group-data-[focus=true]:bg-zinc-800",
+            ],
+            input: "group-data-[has-value=true]:text-white",
           }}
           isInvalid={error}
           errorMessage="Entered URL is not valid!"
@@ -68,7 +72,7 @@ export default function Home() {
             <Button
               isLoading={loading}
               onClick={generateURL}
-              className="bg-[#bc6280] font-semibold"
+              className="bg-green-300 font-semibold"
             >
               Generate
             </Button>
@@ -77,20 +81,23 @@ export default function Home() {
       </div>
 
       <div className="md:w-3/5 w-4/5 flex flex-col gap-1">
-        <label htmlFor="output" className="font-bold text-white">
+        <label htmlFor="output" className="font-bold text-black">
           Short URL
         </label>
         <Snippet
           radius="lg"
           tooltipProps={{ showArrow: true }}
-          className="bg-white h-[2.5rem] shadow-sm shadow-white"
+          className="bg-black text-white h-[2.5rem] shadow-sm shadow-black"
+          classNames={{
+            pre: "overflow-x-scroll sch",
+          }}
         >
           {shortUrl ? `tinyminy.luciferlocas.live/${shortUrl}` : ""}
         </Snippet>
       </div>
 
-      <footer className="fixed bottom-0 w-full text-center py-3 sm:px-8 px-3 text-white">
-        <Divider className="mb-2 bg-white" />
+      <footer className="fixed bottom-0 w-full text-center py-3 sm:px-8 px-3 text-black">
+        <Divider className="mb-2 bg-black" />
         <div className="flex sm:flex-row flex-col-reverse gap-4 items-center justify-between px-3">
           <div className="flex gap-4 items-center">
             <Tooltip
@@ -104,7 +111,7 @@ export default function Home() {
               <Link
                 href="https://read.cv/luciferlocas"
                 target="blank"
-                className=" text-white rotate-12 hover:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                className=" text-black rotate-12 hover:drop-shadow-[0_0_0.3rem_#ffffff70]"
               >
                 <Read />
               </Link>
@@ -120,7 +127,7 @@ export default function Home() {
               <Link
                 href="https://github.com/Luciferlocas"
                 target="blank"
-                className=" text-white hover:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                className=" text-black hover:drop-shadow-[0_0_0.3rem_#ffffff70]"
               >
                 <Git />
               </Link>
@@ -136,14 +143,14 @@ export default function Home() {
               <Link
                 href="https://www.linkedin.com/in/rohit-somvanshi/"
                 target="blank"
-                className=" text-white font-extralight text-lg hover:drop-shadow-[0_0_0.3rem_#ffffff70]"
+                className=" text-black font-light text-lg hover:drop-shadow-[0_0_0.3rem_#ffffff70]"
               >
                 in
               </Link>
             </Tooltip>
           </div>
           <p className="font-light">
-            Designed and Developed with 🤍 by{" "}
+            Designed and Developed with 🖤 by{" "}
             <span className="font-semibold">Rohit</span>
           </p>
         </div>
