@@ -12,7 +12,6 @@ export async function GET(
     const urlDoc = await Url.findOne({ shortId: redirect });
 
     if (!urlDoc) {
-      // Return custom HTML for not found
       return new NextResponse(
         `<!DOCTYPE html>
             <html lang="en">

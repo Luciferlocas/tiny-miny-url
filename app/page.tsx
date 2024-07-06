@@ -85,7 +85,7 @@ export default function Home() {
           tooltipProps={{ showArrow: true }}
           className="bg-white h-[2.5rem] shadow-sm shadow-white"
         >
-          {shortUrl ? `tiny-miny.luciferlocas.live/${shortUrl}` : ""}
+          {shortUrl ? `tinyminy.luciferlocas.live/${shortUrl}` : ""}
         </Snippet>
       </div>
 
