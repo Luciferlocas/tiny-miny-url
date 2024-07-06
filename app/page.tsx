@@ -6,7 +6,6 @@ import Read from "./components/icons/Read";
 import Git from "./components/icons/Git";
 import React, { useState } from "react";
 import axios from "axios";
-import Title from "./components/title";
 import Logo from "./components/icons/Logo";
 
 export default function Home() {
@@ -23,6 +22,7 @@ export default function Home() {
     setError(false);
     if (!urlPattern.test(url)) {
       setError(true);
+      setLoading(false);
       return;
     }
 
@@ -42,22 +42,25 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen w-screen flex flex-col justify-center items-center relative gap-[3em]">
+    <div className="bg min-h-screen w-screen flex flex-col justify-center items-center relative gap-[3em]">
       <header className="fixed top-0 w-full text-center py-3 sm:px-8 px-3 text-white">
         <div className="flex justify-start items-center cursor-pointer">
           <Logo />
         </div>
       </header>
       <div className="md:w-3/5 w-4/5 flex flex-col gap-1">
-        <label htmlFor="input" className="font-bold">
+        <label htmlFor="input" className="font-bold text-white">
           Long URL
         </label>
         <Input
           value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          onChange={(e) => {
+            setUrl(e.target.value);
+            setError(false);
+          }}
           placeholder="Enter the long URL"
           classNames={{
-            inputWrapper: "pr-0 bg-[#fcfdf9] shadow-xl",
+            inputWrapper: "pr-0 bg-white shadow-sm shadow-white",
           }}
           isInvalid={error}
           errorMessage="Entered URL is not valid!"
@@ -74,13 +77,13 @@ export default function Home() {
       </div>
 
       <div className="md:w-3/5 w-4/5 flex flex-col gap-1">
-        <label htmlFor="output" className="font-bold">
+        <label htmlFor="output" className="font-bold text-white">
           Short URL
         </label>
         <Snippet
           radius="lg"
           tooltipProps={{ showArrow: true }}
-          className="bg-[#fcfdf9] h-[2.5rem] shadow-xl"
+          className="bg-white h-[2.5rem] shadow-sm shadow-white"
         >
           {shortUrl ? `tiny-miny.luciferlocas.live/${shortUrl}` : ""}
         </Snippet>

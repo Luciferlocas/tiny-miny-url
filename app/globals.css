@@ -3,8 +3,32 @@
 @tailwind utilities;
 
 body {
-  background-image: url(../public/bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center bottom;
+  --dot-bg: black;
+  --dot-color: white;
+  --dot-size: 1.5px;
+  --dot-space: 28px;
+  background: linear-gradient(
+        90deg,
+        var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
+        transparent 1%
+      )
+      center / var(--dot-space) var(--dot-space),
+    linear-gradient(
+        var(--dot-bg) calc(var(--dot-space) - var(--dot-size)),
+        transparent 1%
+      )
+      center / var(--dot-space) var(--dot-space),
+    var(--dot-color);
+  mix-blend-mode: difference;
+  animation: gradient 200s ease infinite;
 }
+
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+} 
