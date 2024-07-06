@@ -6,15 +6,21 @@ import Read from "./components/icons/Read";
 import Git from "./components/icons/Git";
 import React, { useState } from "react";
 import axios from "axios";
+import Title from "./components/title";
+import Logo from "./components/icons/Logo";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
   const [error, setError] = useState(false);
-  const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+  const urlPattern =
+    /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/i;
 
   const generateURL = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError(false);
     if (!urlPattern.test(url)) {
       setError(true);
       return;
@@ -30,11 +36,18 @@ export default function Home() {
       }
     } catch (error: any) {
       console.error("Error generating short URL:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen w-screen flex flex-col justify-center items-center relative gap-[3em]">
+      <header className="fixed top-0 w-full text-center py-3 sm:px-8 px-3 text-white">
+        <div className="flex justify-start items-center cursor-pointer">
+          <Logo />
+        </div>
+      </header>
       <div className="md:w-3/5 w-4/5 flex flex-col gap-1">
         <label htmlFor="input" className="font-bold">
           Long URL
@@ -50,6 +63,7 @@ export default function Home() {
           errorMessage="Entered URL is not valid!"
           endContent={
             <Button
+              isLoading={loading}
               onClick={generateURL}
               className="bg-[#bc6280] font-semibold"
             >
