@@ -92,7 +92,7 @@ export default function Home() {
             pre: "overflow-x-scroll sch",
           }}
         >
-          {shortUrl ? `tinyminy.luciferlocas.live/${shortUrl}` : ""}
+          {shortUrl ? `tm.rsom.me/${shortUrl}` : ""}
         </Snippet>
       </div>
 
